@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b010b3e97e874816a2e828f0a21fcfa4, type: 3}
+  m_Name: Board Element Asset Group
+  m_EditorClassIdentifier: 
+  tag: 1
+  BoardElementPrefabs:
+  - <Key>k__BackingField: 0
+    <Value>k__BackingField: {fileID: 0}
+  - <Key>k__BackingField: 1
+    <Value>k__BackingField: {fileID: 1617472329927940574, guid: a84f5aedf7b64694c8f7d8887f03b2bf, type: 3}
+  - <Key>k__BackingField: 4160
+    <Value>k__BackingField: {fileID: 0}
+  - <Key>k__BackingField: 4224
+    <Value>k__BackingField: {fileID: 268459185038913484, guid: a96738383f7c941469fba0ae3de21c90, type: 3}
+  - <Key>k__BackingField: 4352
+    <Value>k__BackingField: {fileID: 1806068240341819327, guid: fd3168085a918ae4cb4dbae78b435da4, type: 3}
+  - <Key>k__BackingField: 4608
+    <Value>k__BackingField: {fileID: 3696729390272816198, guid: e2d2b5b4d23261e43b501c9b305371c6, type: 3}
+  - <Key>k__BackingField: 5120
+    <Value>k__BackingField: {fileID: 1434542210815414093, guid: 6866b9f8cdb8ac147b0b636d996f8dd3, type: 3}
+  - <Key>k__BackingField: 6144
+    <Value>k__BackingField: {fileID: 1644936219027824492, guid: 00808ee7072adb041b07e9e316a85e92, type: 3}
+  - <Key>k__BackingField: 8194
+    <Value>k__BackingField: {fileID: 0}
+  - <Key>k__BackingField: 8196
+    <Value>k__BackingField: {fileID: 0}
+  - <Key>k__BackingField: 8198
+    <Value>k__BackingField: {fileID: 0}
+  - <Key>k__BackingField: 8200
+    <Value>k__BackingField: {fileID: 0}
+  - <Key>k__BackingField: 8202
+    <Value>k__BackingField: {fileID: 0}
+  - <Key>k__BackingField: 32769
+    <Value>k__BackingField: {fileID: 2107012151290494080, guid: 445bff432cd0f384fb7e3810e799d9e8, type: 3}
+  - <Key>k__BackingField: 65537
+    <Value>k__BackingField: {fileID: 0}
+  - <Key>k__BackingField: 65538
+    <Value>k__BackingField: {fileID: 0}
+  - <Key>k__BackingField: 65539
+    <Value>k__BackingField: {fileID: 0}
+  - <Key>k__BackingField: 65667
+    <Value>k__BackingField: {fileID: 0}
+  - <Key>k__BackingField: 65795
+    <Value>k__BackingField: {fileID: 0}
+  - <Key>k__BackingField: 66051
+    <Value>k__BackingField: {fileID: 0}
+  - <Key>k__BackingField: 66563
+    <Value>k__BackingField: {fileID: 0}
+  - <Key>k__BackingField: 67587
+    <Value>k__BackingField: {fileID: 0}
+  - <Key>k__BackingField: 131073
+    <Value>k__BackingField: {fileID: 0}
+  - <Key>k__BackingField: 131074
+    <Value>k__BackingField: {fileID: 0}
+  - <Key>k__BackingField: 131202
+    <Value>k__BackingField: {fileID: 0}
+  - <Key>k__BackingField: 131330
+    <Value>k__BackingField: {fileID: 0}
+  - <Key>k__BackingField: 131586
+    <Value>k__BackingField: {fileID: 0}
+  - <Key>k__BackingField: 132098
+    <Value>k__BackingField: {fileID: 0}
+  - <Key>k__BackingField: 133122
+    <Value>k__BackingField: {fileID: 0}

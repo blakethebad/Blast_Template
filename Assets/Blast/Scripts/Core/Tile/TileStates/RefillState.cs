@@ -46,14 +46,10 @@ namespace Blast.Scripts.Core.Tile.TileStates
                     //If this is the final destination for the tile check for matches around
                     if (CoreTile.GetNeighbor(Direction.Bottom) != null && CoreTile.GetNeighbor(Direction.Bottom)
                             .CheckCurrentState(TileState.RefillState))
-                    {
                         ChangeStateCallback.Invoke(new TileStatePackage(TileState.WaitingDropState));
-                    }
+
                     else
-                    {
                         ChangeStateCallback.Invoke(new TileStatePackage(TileState.IdleState));
-                        CoreTile.CheckAndActivateMatch();
-                    }
                 });
                 yield break;
             }

@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Blast.Scripts.Core.TileElements
 {
-    public class ColorStone : BaseTileElement, IActivatable, ISwappable, IDroppable
+    public class ColorStone : BaseTileElement, IActivatable, ISwappable, IDroppable, IMatchable
     {
         public override TileLayerType Layer { get; protected set; } = TileLayerType.ItemLayer;
         

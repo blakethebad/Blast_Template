@@ -18,7 +18,7 @@ namespace Blast.Scripts.Services.AssetManagement
         public T[] GetLevelEditorTileElementTools<T>(string slug) where T : TileElementEditorTool
         {
             string[] assetGuiIDs = AssetDatabase.FindAssets($"t:{typeof(T).FullName}", 
-                new[] { AssetPathProvider.MATCH3_LEVEL_ELEMENTS_PATH + slug });
+                new[] { AssetPathProvider.BLAST_LEVEL_ELEMENTS_PATH + slug });
             
             T[] tileElementTools = new T[assetGuiIDs.Length];
 
@@ -32,7 +32,7 @@ namespace Blast.Scripts.Services.AssetManagement
 
         public Texture2D GetIcon(string slug)
         {
-            UnityEngine.Object[] assets = AssetDatabase.LoadAllAssetsAtPath(AssetPathProvider.MATCH3_LEVEL_ICON_PATH + slug + "." + "png");
+            UnityEngine.Object[] assets = AssetDatabase.LoadAllAssetsAtPath(AssetPathProvider.BLAST_LEVEL_ICON_PATH + slug + "." + "png");
 
             foreach (var asset in assets)
             {
@@ -47,7 +47,7 @@ namespace Blast.Scripts.Services.AssetManagement
         {
             List<LevelInfo> levelInfos = new List<LevelInfo>();
 
-            string directory = AssetPathProvider.MATCH3_LEVEL_PATH + System.IO.Path.DirectorySeparatorChar;
+            string directory = AssetPathProvider.BLAST_LEVEL_PATH + System.IO.Path.DirectorySeparatorChar;
 
             string[] levelDataGuiIds = AssetDatabase.FindAssets("t:" + nameof(LevelData), new[] { directory });
 
@@ -81,7 +81,7 @@ namespace Blast.Scripts.Services.AssetManagement
 
             ResetLevelDataWithNewSize(levelData, 5, 5);
             
-            string newAssetPath = AssetPathProvider.MATCH3_LEVEL_PATH + System.IO.Path.DirectorySeparatorChar + newLevelIndex.ToString("0000000") + ".asset";
+            string newAssetPath = AssetPathProvider.BLAST_LEVEL_PATH + System.IO.Path.DirectorySeparatorChar + newLevelIndex.ToString("0000000") + ".asset";
 
             if (!System.IO.File.Exists(newAssetPath))
                 AssetDatabase.CreateAsset(levelData, newAssetPath);
@@ -156,7 +156,7 @@ namespace Blast.Scripts.Services.AssetManagement
                 AssetDatabase.DeleteAsset(AssetDatabase.GUIDToAssetPath(levelInfo.GuiId));
             }
             
-            string newAssetPath = AssetPathProvider.MATCH3_LEVEL_PATH + System.IO.Path.DirectorySeparatorChar + newLevelData.levelIndex.ToString("0000000") + ".asset";
+            string newAssetPath = AssetPathProvider.BLAST_LEVEL_PATH + System.IO.Path.DirectorySeparatorChar + newLevelData.levelIndex.ToString("0000000") + ".asset";
 
             string assetPath = AssetDatabase.GetAssetPath(SelectedLevelData.GetInstanceID());
 

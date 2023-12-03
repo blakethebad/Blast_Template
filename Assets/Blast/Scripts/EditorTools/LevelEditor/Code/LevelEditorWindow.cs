@@ -31,7 +31,7 @@ namespace Blast.Scripts.EditorTools.LevelEditor.Code
             ToolBoxDrawer = new LevelEditorToolBoxDrawer(this);
         }
         
-        [MenuItem("Match3/LevelEditor")]
+        [MenuItem("Blast/LevelEditor")]
         static void ShowWindow()
         {
             // Show the editor window
@@ -41,7 +41,7 @@ namespace Blast.Scripts.EditorTools.LevelEditor.Code
         private void DrawLabel()
         {
             GUI.skin.label.alignment = TextAnchor.UpperCenter;
-            GUILayout.Label("Match3 Level Editor", EditorStyles.boldLabel);
+            GUILayout.Label("Blast Level Editor", EditorStyles.boldLabel);
         }
         
         void OnGUI()

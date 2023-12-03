@@ -15,7 +15,6 @@ namespace Blast.Scripts.Core.Tile
         public Vector3 WorldPosition { get; private set; }
 
         private BaseTileState _currentState;
-        private readonly TileMatchChecker _matchChecker = new ();
 
         private Dictionary<Direction, Tile> _neighbors;
         private readonly Dictionary<TileLayerType, ITileLayer> _layers;
@@ -25,7 +24,6 @@ namespace Blast.Scripts.Core.Tile
         {
             Coordinates = coordinates;
             WorldPosition = new Vector3(Coordinates.x, Coordinates.y);
-            _matchChecker.InitMatchChecker(this);
             _layers = new Dictionary<TileLayerType, ITileLayer>()
             {
                 { TileLayerType.BlockerLayer, new BlockerLayer() },
@@ -117,8 +115,6 @@ namespace Blast.Scripts.Core.Tile
         
         public bool CheckCurrentState(TileState state) => _currentState.State == state;
         
-        public void Swap(Direction swapDirection, ISwappable swappedElement, bool isUndo){}
-
         public void RefillTile() => ChangeState(new TileStatePackage(TileState.RefillState));
         
         public void DropElement(Tile tileToDrop, Action onDropComplete) => ChangeState(new TileStatePackage(TileState.DropState, tileToDrop, onDropComplete));
@@ -126,9 +122,6 @@ namespace Blast.Scripts.Core.Tile
         public void RecieveInput(Direction inputDirection) => ChangeState(new TileStatePackage(TileState.RecieveInputState, inputDirection));
 
         public void Activate(Match.Match activatedMatch, Action onTileActivated) => ChangeState(new TileStatePackage(TileState.ActivateState, activatedMatch, onTileActivated));
-
-        public bool CheckAndActivateMatch() => _matchChecker.CheckMatch();
-
 
         #endregion
     }

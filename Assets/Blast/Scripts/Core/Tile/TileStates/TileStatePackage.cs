@@ -7,9 +7,6 @@ namespace Blast.Scripts.Core.Tile.TileStates
     {
         public TileState StateToTranslate { get; private set; }
         
-        //Recive Input State
-        public Direction InputDirection { get; private set; }
-        
         //ActivateState
         public Match.Match ActivatedMatch { get; private set; }
         public Action OnTileActivated { get; private set; }
@@ -24,7 +21,6 @@ namespace Blast.Scripts.Core.Tile.TileStates
         public TileStatePackage(TileState stateToTranslate)
         {
             StateToTranslate = stateToTranslate;
-            InputDirection = Direction.None;
             ActivatedMatch = null;
             TileToDrop = null;
             OnDropComplete = null;
@@ -35,7 +31,6 @@ namespace Blast.Scripts.Core.Tile.TileStates
         public TileStatePackage(TileState stateToTranslate, Direction inputDirection)
         {
             StateToTranslate = stateToTranslate;
-            InputDirection = inputDirection;
             ActivatedMatch = null;
             TileToDrop = null;
             OnDropComplete = null;
@@ -47,7 +42,6 @@ namespace Blast.Scripts.Core.Tile.TileStates
         {
             StateToTranslate = stateToTranslate;
             ActivatedMatch = activatedMatch;
-            InputDirection = Direction.None;
             TileToDrop = null;
             OnDropComplete = null;
             OnTileActivated = onTileActivated;
@@ -60,7 +54,6 @@ namespace Blast.Scripts.Core.Tile.TileStates
             TileToDrop = tileToDrop;
             OnDropComplete = onDropComplete;
             ActivatedMatch = null;
-            InputDirection = Direction.None;
             OnTileActivated = null;
         }
     }

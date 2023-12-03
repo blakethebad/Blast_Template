@@ -1,14 +1,21 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Blast.Scripts.Core.Grid;
+using Blast.Scripts.Core.Match;
 using Blast.Scripts.Core.TileElements;
 using Blast.Scripts.Core.TileElements.Interfaces;
+using UnityEngine;
 
 namespace Blast.Scripts.Core.Tile.TileStates
 {
     public class RecieveInputState : BaseTileState
     {
         public override TileState State { get; protected set; } = TileState.RecieveInputState;
+        private readonly Queue<Tile> _searchQueue = new Queue<Tile>();
+        private readonly HashSet<Tile> _searchedTiles = new HashSet<Tile>();
+        private readonly HashSet<Tile> _matchedTiles = new HashSet<Tile>();
+        private readonly Direction[] _searchDirections = new [] { Direction.Top , Direction.Bottom, Direction.Right, Direction.Left};
 
         public RecieveInputState(Tile coreTile, Action<TileStatePackage> changeStateCallback) : base(coreTile, changeStateCallback)
         {
@@ -18,7 +25,9 @@ namespace Blast.Scripts.Core.Tile.TileStates
 
         public override void EnterState(TileStatePackage tileStatePackage)
         {
-            if (tileStatePackage.InputDirection == Direction.None && !CoreTile.IsEmpty() && CoreTile.GetFirstElement() is IClickActivatable clickActivatable)
+            if(CoreTile.IsEmpty()) return;
+
+            if (CoreTile.GetFirstElement() is IClickActivatable clickActivatable)
             {
                 clickActivatable.Activate(null, () =>
                 {
@@ -27,67 +36,57 @@ namespace Blast.Scripts.Core.Tile.TileStates
                 return;
             }
 
-            Tile neighbor = CoreTile.GetNeighbor(tileStatePackage.InputDirection);
-
-            if (CoreTile.IsEmpty() ||
-                CoreTile.GetFirstElement() is not ISwappable inputElement ||
-                neighbor?.GetFirstElement() is not ISwappable swappedElement)
-            {
-                ChangeStateCallback.Invoke(new TileStatePackage(TileState.IdleState));
+            ChangeStateCallback.Invoke(new TileStatePackage(TileState.IdleState));
+            
+            if(CoreTile.GetFirstElement() is not IMatchable)
                 return;
-            }
-
-            if (BoardElementHelper.IsBaseType(((BaseTileElement)inputElement).Type, BaseElementType.Booster) &&
-                BoardElementHelper.IsBaseType(((BaseTileElement)swappedElement).Type, BaseElementType.Booster))
-            {
-                BoosterCombo();
-            }
-            else
-            {
-                RegularSwap(inputElement, swappedElement, tileStatePackage);
-            }
             
-
-        }
-        
-        private void BoosterCombo()
-        {
-            
+            Match.Match foundMatch = CheckMatch();
+            if (foundMatch is not null)
+            {
+                GridMono.OnMatchCreated.Invoke(foundMatch);
+            }
         }
 
-        private void RegularSwap(ISwappable inputElement, ISwappable swappedElement, TileStatePackage statePackage)
+        private Match.Match CheckMatch()
         {
-            inputElement.Swap(statePackage.InputDirection);
-            swappedElement.Swap(DirectionHelper.Opposite(statePackage.InputDirection));
-            
-            bool foundInputMatch = CheckOnTile(CoreTile, swappedElement, inputElement);
-            bool foundSwapMatch = CheckOnTile(CoreTile.GetNeighbor(statePackage.InputDirection), inputElement, swappedElement);
-            
-            if (!foundInputMatch && !foundSwapMatch)
-                Undo();
+            _searchQueue.Clear();
+            _searchedTiles.Clear();
+            _matchedTiles.Clear();
+            _searchQueue.Enqueue(CoreTile);
 
-            if(!foundInputMatch) 
-                ChangeStateCallback.Invoke(new TileStatePackage(TileState.IdleState));
+            _searchedTiles.Add(CoreTile);
             
-            async void Undo()
+            BoardElementType searchedType = CoreTile.GetFirstElement().Type;
+            Tile currentTile = null;
+            Tile neighbor = null;
+            while (_searchQueue.Count > 0)
             {
-                await Task.Delay(TimeSpan.FromSeconds(0.2f));
+                currentTile = _searchQueue.Dequeue();
                 
-                inputElement.Swap(DirectionHelper.Opposite(statePackage.InputDirection));
-                swappedElement.Swap(statePackage.InputDirection);
-            }
-        }
-        
+                for (int i = 0; i < _searchDirections.Length; i++)
+                {
+                    neighbor = currentTile.GetNeighbor(_searchDirections[i]);
+                    if(_searchedTiles.Contains(neighbor))
+                        continue;
+                    
+                    _searchedTiles.Add(neighbor);
 
-        private bool CheckOnTile(Tile tileToCheck, ISwappable swappable, ISwappable swappedElement)
-        {
-            if (swappable is not IBooster booster) return tileToCheck.CheckAndActivateMatch();
+                    if (neighbor == null || neighbor.IsEmpty() ||
+                        neighbor.GetFirstElement().Type != searchedType)
+                    {
+                        continue;
+                    }
+
+                    _matchedTiles.Add(neighbor);
+                    _searchQueue.Enqueue(neighbor);
+                }
+            }
+
+            if (_matchedTiles.Count <= 0) return null;
             
-            booster.SwapActivate((BaseTileElement)swappedElement, () =>
-            {
-                ChangeStateCallback.Invoke(new TileStatePackage(TileState.IdleState));
-            });
-            return true;
+            _matchedTiles.Add(CoreTile);
+            return new BasicMatch(MatchType.ThreeMatch, _matchedTiles);
 
         }
     }
