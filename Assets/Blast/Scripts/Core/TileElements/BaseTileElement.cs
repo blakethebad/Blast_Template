@@ -1,0 +1,30 @@
+﻿using Blast.Scripts.Core.Grid.GridData;
+using UnityEngine;
+
+namespace Blast.Scripts.Core.TileElements
+{
+    public abstract class BaseTileElement
+    {
+        protected Tile.Tile Tile { get; private set; }
+        public Transform Transform { get; private set; }
+        public BoardElementType Type { get; private set; }
+        public abstract TileLayerType Layer { get; protected set; }
+
+        protected readonly ElementPropertyHelper _propertyHelper = new ElementPropertyHelper();
+
+        public void InitBaseTileElement(TileElementData tileElementData, Transform transform)
+        {
+            Type = tileElementData.ElementType;
+            Transform = transform;
+        }
+
+        public void SetTile(Tile.Tile tile) => Tile = tile;
+
+        protected void ReturnElementToPool()
+        {
+            Transform.gameObject.SetActive(false);
+            Transform.localScale = Vector3.one;
+            Transform.position = Vector3.zero;
+        }
+    }
+}

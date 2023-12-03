@@ -1,0 +1,18 @@
+using Blast.Scripts.Core.Grid.GridData;
+using UnityEngine;
+
+namespace Blast.Scripts.EditorTools.LevelEditor.Code.Tools
+{
+    [CreateAssetMenu(fileName = "Color Stone Editor Tool", menuName = "Tile Element Editor Tools/ColorStone")]
+    public class ColorStoneEditorTool : TileElementEditorTool
+    {
+        public override TileElementData GenerateDuplicateTileElementData()
+        {
+            TileElementData duplicate = new ColorStoneData();
+            duplicate.ElementType = ElementType;
+
+            return duplicate;
+        }
+    }
+}
+
