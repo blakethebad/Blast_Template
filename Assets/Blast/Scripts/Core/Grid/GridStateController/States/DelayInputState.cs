@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace Blast.Scripts.Core.Grid.GridStateController.States
+namespace Blast.Core.Grid.States
 {
     public class DelayInputState : BaseGridState
     {

@@ -1,4 +1,4 @@
-﻿namespace Blast.Scripts.Services.AssetManagement
+﻿namespace Blast.Services.AssetManagement
 {
     public static class AssetPathProvider
     {

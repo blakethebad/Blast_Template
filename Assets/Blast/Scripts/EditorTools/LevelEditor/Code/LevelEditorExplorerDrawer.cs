@@ -1,8 +1,8 @@
-﻿using Blast.Scripts.Services.AssetManagement;
+﻿using Blast.Services.AssetManagement;
 using UnityEditor;
 using UnityEngine;
 
-namespace Blast.Scripts.EditorTools.LevelEditor.Code
+namespace Blast.EditorTools.LevelEditor.Code
 {
     public class LevelEditorExplorerDrawer
     {

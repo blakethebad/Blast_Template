@@ -1,9 +1,10 @@
-﻿using Blast.Scripts.Core.Grid.GridData;
-using Blast.Scripts.Core.TileElements;
-using Blast.Scripts.Services.AssetManagement;
+﻿using Blast.Core.Grid.GridData;
+using Blast.Core.TileElements;
+using Blast.Core.TileLogic;
+using Blast.Services.AssetManagement;
 using UnityEngine;
 
-namespace Blast.Scripts.Core.Grid.GridCreation
+namespace Blast.Core.Grid.GridCreation
 {
     public class TileElementCreator
     {
@@ -17,7 +18,7 @@ namespace Blast.Scripts.Core.Grid.GridCreation
             return CreateElementFromPool(tileElementData, spawnPosition, grid);
         }
 
-        public void CreateElementOnTile(TileElementData tileElementData, Tile.Tile createdTile, GridMono grid)
+        public void CreateElementOnTile(TileElementData tileElementData, Tile createdTile, GridMono grid)
         {
             if (tileElementData.ElementType == BoardElementType.RandomStone)
                 tileElementData.ElementType = _typeAssigner.AssignRandomTypes(tileElementData, grid);

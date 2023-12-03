@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-namespace Blast.Scripts.Core.Grid
+namespace Blast.Core.Grid
 {
     public static class CoroutineTracker
     {

@@ -1,13 +1,13 @@
 ﻿using System;
-using Blast.Scripts.Core.Grid;
-using Blast.Scripts.Core.Match;
+using Blast.Core.Grid;
+using Blast.Core.MatchLogic;
 
-namespace Blast.Scripts.Core.TileElements
+namespace Blast.Core.TileElements
 {
     public class VortexBooster : Booster
     {
-        private Match.Match _boosterMatch;
-        public override void Activate(Match.Match activatedMatch, Action onActivationComplete)
+        private Match _boosterMatch;
+        public override void Activate(Match activatedMatch, Action onActivationComplete)
         {
             _boosterMatch = new HorizontalBoosterMatch(MatchType.HorizontalBoosterMatch, Tile);
             Tile.RemoveElementFromTile(this);

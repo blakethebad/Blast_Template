@@ -1,17 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using Blast.Scripts.Core.Grid;
+using Blast.Core.Grid;
+using Blast.Core.TileLogic;
 using UnityEngine;
 
-namespace Blast.Scripts.Core.Match
+namespace Blast.Core.MatchLogic
 {
     public class VerticalBoosterMatch : Match
     {
-        private readonly List<HashSet<Tile.Tile>> _orderedActivation = new ();
+        private readonly List<HashSet<Tile>> _orderedActivation = new ();
         private readonly WaitForSeconds _delayForActivation = new WaitForSeconds(0.03f);
 
 
-        public VerticalBoosterMatch(MatchType matchType, Tile.Tile originTile) : base(matchType)
+        public VerticalBoosterMatch(MatchType matchType, Tile originTile) : base(matchType)
         {
             CalculateMatch(originTile);
         }
@@ -26,16 +27,16 @@ namespace Blast.Scripts.Core.Match
             }
         }
         
-        private void CalculateMatch(Tile.Tile originTile)
+        private void CalculateMatch(Tile originTile)
         {
-            Tile.Tile topTile = originTile.GetNeighbor(Direction.Top);
-            Tile.Tile bottomTile = originTile.GetNeighbor(Direction.Bottom);
+            Tile topTile = originTile.GetNeighbor(Direction.Top);
+            Tile bottomTile = originTile.GetNeighbor(Direction.Bottom);
 
             ActivatedTiles.Add(originTile);
             int activationOrder = 0;
             while (topTile != null || bottomTile != null)
             {
-                _orderedActivation.Add(new HashSet<Tile.Tile>());
+                _orderedActivation.Add(new HashSet<Tile>());
                 if (topTile != null)
                 {
                     _orderedActivation[activationOrder].Add(topTile);

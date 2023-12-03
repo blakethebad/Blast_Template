@@ -1,8 +1,8 @@
-﻿using Blast.Scripts.Core.Grid.GridData;
-using Blast.Scripts.Core.Grid.GridStateController.States;
+﻿using Blast.Core.Grid.GridData;
+using Blast.Core.Grid.States;
 using UnityEngine.EventSystems;
 
-namespace Blast.Scripts.Core.Grid.GridStateController
+namespace Blast.Core.Grid
 {
     public sealed class GridStateController : IGridInputReciever
     {

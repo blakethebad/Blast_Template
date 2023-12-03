@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using Blast.Scripts.Core.Grid;
-using Blast.Scripts.Core.Tile.Layers;
-using Blast.Scripts.Core.Tile.TileStates;
-using Blast.Scripts.Core.TileElements;
-using Blast.Scripts.Core.TileElements.Interfaces;
+using Blast.Core.Grid;
+using Blast.Core.MatchLogic;
+using Blast.Core.TileElements;
+using Blast.Core.TileLogic.Layers;
+using Blast.Core.TileLogic.TileStates;
 using UnityEngine;
 
-namespace Blast.Scripts.Core.Tile
+namespace Blast.Core.TileLogic
 {
     public sealed class Tile
     {
@@ -121,7 +121,7 @@ namespace Blast.Scripts.Core.Tile
 
         public void RecieveInput(Direction inputDirection) => ChangeState(new TileStatePackage(TileState.RecieveInputState, inputDirection));
 
-        public void Activate(Match.Match activatedMatch, Action onTileActivated) => ChangeState(new TileStatePackage(TileState.ActivateState, activatedMatch, onTileActivated));
+        public void Activate(Match activatedMatch, Action onTileActivated) => ChangeState(new TileStatePackage(TileState.ActivateState, activatedMatch, onTileActivated));
 
         #endregion
     }

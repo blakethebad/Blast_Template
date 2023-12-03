@@ -1,9 +1,10 @@
 ﻿using System;
+using Blast.Core.MatchLogic;
 
-namespace Blast.Scripts.Core.TileElements.Interfaces
+namespace Blast.Core.TileElements.Interfaces
 {
     public interface IActivatable
     {
-        public void Activate(Match.Match activatedMatch, Action onActivationComplete);
+        public void Activate(Match activatedMatch, Action onActivationComplete);
     }
 }

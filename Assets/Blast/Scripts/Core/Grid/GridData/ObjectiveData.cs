@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Blast.Scripts.Core.Grid.GridData
+namespace Blast.Core.Grid.GridData
 {
     [Serializable]
     public class ObjectiveData

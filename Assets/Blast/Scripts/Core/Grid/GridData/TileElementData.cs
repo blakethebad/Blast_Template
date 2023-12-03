@@ -1,8 +1,8 @@
 ﻿using System;
-using Blast.Scripts.Core.TileElements;
+using Blast.Core.TileElements;
 using UnityEngine;
 
-namespace Blast.Scripts.Core.Grid.GridData
+namespace Blast.Core.Grid.GridData
 {
     [Serializable]
     public abstract class TileElementData

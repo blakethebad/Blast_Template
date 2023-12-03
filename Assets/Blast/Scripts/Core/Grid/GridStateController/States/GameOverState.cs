@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Blast.Scripts.Core.Grid.GridStateController.States
+namespace Blast.Core.Grid.States
 {
     public class GameOverState : BaseGridState
     {

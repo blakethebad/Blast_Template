@@ -1,8 +1,8 @@
 ﻿using System.Linq;
-using Blast.Scripts.Core.Grid.GridData;
-using Blast.Scripts.Services.AssetManagement.AssetGroup;
+using Blast.Core.Grid.GridData;
+using Blast.Services.AssetManagement.AssetGroup;
 
-namespace Blast.Scripts.Services.AssetManagement
+namespace Blast.Services.AssetManagement
 {
     public class AssetManagerLevels
     {

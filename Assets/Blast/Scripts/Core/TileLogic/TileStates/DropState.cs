@@ -1,7 +1,7 @@
 ﻿using System;
-using Blast.Scripts.Core.TileElements.Interfaces;
+using Blast.Core.TileElements.Interfaces;
 
-namespace Blast.Scripts.Core.Tile.TileStates
+namespace Blast.Core.TileLogic.TileStates
 {
     public class DropState: BaseTileState
     {

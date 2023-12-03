@@ -1,4 +1,4 @@
-﻿namespace Blast.Scripts
+﻿namespace Blast
 {
     public static class BoardElementHelper
     {

@@ -1,7 +1,7 @@
 ﻿using System;
-using Blast.Scripts.Core.TileElements;
+using Blast.Core.TileElements;
 
-namespace Blast.Scripts.Core.Grid.GridData
+namespace Blast.Core.Grid.GridData
 {
     public class BoosterData : TileElementData
     {

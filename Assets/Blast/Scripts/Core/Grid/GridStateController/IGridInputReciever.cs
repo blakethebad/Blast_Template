@@ -1,6 +1,6 @@
 ﻿using UnityEngine.EventSystems;
 
-namespace Blast.Scripts.Core.Grid.GridStateController
+namespace Blast.Core.Grid
 {
     public interface IGridInputReciever
     {

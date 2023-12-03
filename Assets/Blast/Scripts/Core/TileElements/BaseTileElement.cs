@@ -1,11 +1,12 @@
-﻿using Blast.Scripts.Core.Grid.GridData;
+﻿using Blast.Core.Grid.GridData;
+using Blast.Core.TileLogic;
 using UnityEngine;
 
-namespace Blast.Scripts.Core.TileElements
+namespace Blast.Core.TileElements
 {
     public abstract class BaseTileElement
     {
-        protected Tile.Tile Tile { get; private set; }
+        protected Tile Tile { get; private set; }
         public Transform Transform { get; private set; }
         public BoardElementType Type { get; private set; }
         public abstract TileLayerType Layer { get; protected set; }
@@ -18,7 +19,7 @@ namespace Blast.Scripts.Core.TileElements
             Transform = transform;
         }
 
-        public void SetTile(Tile.Tile tile) => Tile = tile;
+        public void SetTile(Tile tile) => Tile = tile;
 
         protected void ReturnElementToPool()
         {

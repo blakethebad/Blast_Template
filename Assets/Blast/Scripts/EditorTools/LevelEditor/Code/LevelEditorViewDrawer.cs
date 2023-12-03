@@ -1,8 +1,8 @@
-﻿using Blast.Scripts.Core.Grid.GridData;
+﻿using Blast.Core.Grid.GridData;
 using UnityEditor;
 using UnityEngine;
 
-namespace Blast.Scripts.EditorTools.LevelEditor.Code
+namespace Blast.EditorTools.LevelEditor.Code
 {
     public class LevelEditorViewDrawer
     {

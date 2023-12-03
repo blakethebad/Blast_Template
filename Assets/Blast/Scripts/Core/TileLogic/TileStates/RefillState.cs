@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections;
-using Blast.Scripts.Core.Grid;
+using Blast.Core.Grid;
 using UnityEngine;
 
-namespace Blast.Scripts.Core.Tile.TileStates
+namespace Blast.Core.TileLogic.TileStates
 {
     public class RefillState: BaseTileState
     {

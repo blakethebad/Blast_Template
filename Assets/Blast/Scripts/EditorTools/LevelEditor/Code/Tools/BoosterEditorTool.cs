@@ -1,7 +1,7 @@
-﻿using Blast.Scripts.Core.Grid.GridData;
+﻿using Blast.Core.Grid.GridData;
 using UnityEngine;
 
-namespace Blast.Scripts.EditorTools.LevelEditor.Code.Tools
+namespace Blast.EditorTools.LevelEditor.Code.Tools
 {
     [CreateAssetMenu(fileName = "Booster Editor Tool", menuName = "Tile Element Editor Tools/Booster")]
     public class BoosterEditorTool : TileElementEditorTool

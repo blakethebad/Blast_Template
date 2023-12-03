@@ -1,10 +1,10 @@
-﻿using Blast.Scripts.Core.Grid.GridData;
-using Blast.Scripts.EditorTools.LevelEditor.Code.Tools;
-using Blast.Scripts.Services.AssetManagement;
+﻿using Blast.Core.Grid.GridData;
+using Blast.EditorTools.LevelEditor.Code.Tools;
+using Blast.Services.AssetManagement;
 using UnityEditor;
 using UnityEngine;
 
-namespace Blast.Scripts.EditorTools.LevelEditor.Code
+namespace Blast.EditorTools.LevelEditor.Code
 {
     public class LevelEditorWindow : EditorWindow
     {

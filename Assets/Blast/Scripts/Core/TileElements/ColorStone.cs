@@ -1,17 +1,19 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Blast.Scripts.Core.Grid;
-using Blast.Scripts.Core.TileElements.Interfaces;
+using Blast.Core.Grid;
+using Blast.Core.MatchLogic;
+using Blast.Core.TileElements.Interfaces;
+using Blast.Core.TileLogic;
 using DG.Tweening;
 using UnityEngine;
 
-namespace Blast.Scripts.Core.TileElements
+namespace Blast.Core.TileElements
 {
     public class ColorStone : BaseTileElement, IActivatable, ISwappable, IDroppable, IMatchable
     {
         public override TileLayerType Layer { get; protected set; } = TileLayerType.ItemLayer;
         
-        public void Activate(Match.Match activatedMatch, Action onActivationComplete)
+        public void Activate(Match activatedMatch, Action onActivationComplete)
         {
             Tile.RemoveElementFromTile(this);
             ActivateVisuals(onActivationComplete);
@@ -27,6 +29,6 @@ namespace Blast.Scripts.Core.TileElements
         }
 
         public void Swap(Direction direction) => _propertyHelper.Swap(this, Tile, direction);
-        public void Drop(Tile.Tile droppedTile, Action onDropComplete) => _propertyHelper.Drop(this, Tile, droppedTile, onDropComplete);
+        public void Drop(Tile droppedTile, Action onDropComplete) => _propertyHelper.Drop(this, Tile, droppedTile, onDropComplete);
     }
 }

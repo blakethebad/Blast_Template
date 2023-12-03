@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using Blast.Scripts.Core.Grid.GridData;
+using Blast.Core.Grid.GridData;
 using UnityEngine;
 
-namespace Blast.Scripts.Services.AssetManagement.AssetGroup
+namespace Blast.Services.AssetManagement.AssetGroup
 {
     [CreateAssetMenu(menuName = "Asset Group/Level Asset Group", fileName = "Level Assets")]
     public class LevelAssetGroup : BaseAssetGroup

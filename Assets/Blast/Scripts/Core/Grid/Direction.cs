@@ -1,4 +1,4 @@
-﻿namespace Blast.Scripts.Core.Grid
+﻿namespace Blast.Core.Grid
 {
     public enum Direction
     {

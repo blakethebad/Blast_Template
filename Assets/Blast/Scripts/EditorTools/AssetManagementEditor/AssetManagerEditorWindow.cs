@@ -1,8 +1,8 @@
-﻿using Blast.Scripts.Services.AssetManagement.AssetGroup;
+﻿using Blast.Services.AssetManagement.AssetGroup;
 using UnityEditor;
 using UnityEngine;
 
-namespace Blast.Scripts.EditorTools.AssetManagementEditor
+namespace Blast.EditorTools.AssetManagementEditor
 {
     public class AssetManagerEditorWindow : EditorWindow
     {

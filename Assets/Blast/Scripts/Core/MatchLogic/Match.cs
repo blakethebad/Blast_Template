@@ -1,15 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using Blast.Scripts.Core.Grid;
+using Blast.Core.Grid;
+using Blast.Core.TileLogic;
 
-namespace Blast.Scripts.Core.Match
+namespace Blast.Core.MatchLogic
 {
     public abstract class Match
     {
         public MatchType MatchType { get; private set; }
-        protected HashSet<Tile.Tile> MatchedTiles { get; private set;} = new HashSet<Tile.Tile>();
-        protected HashSet<Tile.Tile> ActivatedTiles { get; private set; } = new HashSet<Tile.Tile>();
-        private readonly List<Tile.Tile> _tempList = new List<Tile.Tile>();
+        protected HashSet<Tile> MatchedTiles { get; private set;} = new HashSet<Tile>();
+        protected HashSet<Tile> ActivatedTiles { get; private set; } = new HashSet<Tile>();
+        private readonly List<Tile> _tempList = new List<Tile>();
 
         protected Match(MatchType matchType)
         {
@@ -17,16 +18,16 @@ namespace Blast.Scripts.Core.Match
         }
 
         public abstract IEnumerator ExecuteMatch();
-        
-        protected void ActivateTileGroup(HashSet<Tile.Tile> tileGroup)
+
+        protected void ActivateTileGroup(HashSet<Tile> tileGroup)
         {
             _tempList.Clear();
             _tempList.AddRange(tileGroup);
-            foreach (Tile.Tile matchedTile in _tempList)
+            foreach (Tile matchedTile in _tempList)
                 ActivateTile(matchedTile);
         }
 
-        protected void ActivateTile(Tile.Tile matchedTile)
+        private void ActivateTile(Tile matchedTile)
         {
             if(matchedTile == null)
                 return;
@@ -37,13 +38,12 @@ namespace Blast.Scripts.Core.Match
             {
                 MatchedTiles.Remove(matchedTile);
                 ActivatedTiles.Add(matchedTile);
-                if (MatchedTiles.Count <= 0)
+                if (MatchedTiles.Count > 0) return;
+                
+                GridMono.OnMatchCompleted.Invoke(this);
+                foreach (Tile matchedTile in ActivatedTiles)
                 {
-                    GridMono.OnMatchCompleted.Invoke(this);
-                    foreach (Tile.Tile matchedTile in ActivatedTiles)
-                    {
-                        matchedTile.RefillTile();
-                    }
+                    matchedTile.RefillTile();
                 }
             }
         }

@@ -1,6 +1,6 @@
-﻿using Blast.Scripts.Core.TileElements;
+﻿using Blast.Core.TileElements;
 
-namespace Blast.Scripts.Core.Tile.Layers
+namespace Blast.Core.TileLogic.Layers
 {
     public class ItemLayer : ITileLayer
     {

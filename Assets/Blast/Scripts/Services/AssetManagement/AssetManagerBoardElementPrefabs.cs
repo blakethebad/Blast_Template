@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using Blast.Scripts.Services.AssetManagement.AssetGroup;
+using Blast.Services.AssetManagement.AssetGroup;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace Blast.Scripts.Services.AssetManagement
+namespace Blast.Services.AssetManagement
 {
     public class AssetManagerBoardElementPrefabs
     {

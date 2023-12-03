@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Blast.Scripts.Core.Grid.GridData
+namespace Blast.Core.Grid.GridData
 {
     [Serializable]
     public class TileData

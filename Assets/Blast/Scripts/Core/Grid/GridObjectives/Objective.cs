@@ -1,4 +1,4 @@
-namespace Blast.Scripts.Core.Grid.GridObjectives
+namespace Blast.Core.Grid
 {
     public class Objective
     {

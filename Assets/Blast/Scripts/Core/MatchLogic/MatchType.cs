@@ -1,4 +1,4 @@
-﻿namespace Blast.Scripts.Core.Match
+﻿namespace Blast.Core.MatchLogic
 {
     public enum MatchType
     {

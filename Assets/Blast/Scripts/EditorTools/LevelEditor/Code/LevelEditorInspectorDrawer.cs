@@ -1,4 +1,4 @@
-﻿namespace Blast.Scripts.EditorTools.LevelEditor.Code
+﻿namespace Blast.EditorTools.LevelEditor.Code
 {
     public class LevelEditorInspectorDrawer
     {

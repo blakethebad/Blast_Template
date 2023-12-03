@@ -1,16 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using Blast.Scripts.Core.Grid;
-using Blast.Scripts.Core.Grid.GridData;
+using Blast.Core.Grid;
+using Blast.Core.Grid.GridData;
+using Blast.Core.TileLogic;
 using UnityEngine;
 
-namespace Blast.Scripts.Core.Match
+namespace Blast.Core.MatchLogic
 {
     public class BoosterCreatorMatch : Match
     {
         private readonly WaitForSeconds _creationDelay = new WaitForSeconds(0.1f);
-        private readonly Tile.Tile _startTile;
-        public BoosterCreatorMatch(MatchType matchType, Tile.Tile startTile, HashSet<Tile.Tile> tiles) : base(matchType)
+        private readonly Tile _startTile;
+        public BoosterCreatorMatch(MatchType matchType, Tile startTile, HashSet<Tile> tiles) : base(matchType)
         {
             MatchedTiles.UnionWith(tiles);
             _startTile = startTile;

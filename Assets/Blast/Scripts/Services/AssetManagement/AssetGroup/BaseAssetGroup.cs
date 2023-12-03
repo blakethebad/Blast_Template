@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Blast.Scripts.Services.AssetManagement.AssetGroup
+namespace Blast.Services.AssetManagement.AssetGroup
 {
     public abstract class BaseAssetGroup : ScriptableObject
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Blast.Scripts.Services.AssetManagement.AssetGroup
+namespace Blast.Services.AssetManagement.AssetGroup
 {
     [CreateAssetMenu(menuName = "Asset Group/Board Element Asset Group", fileName = "Board Element Asset Group")]
     public class BoardElementAssetGroup : BaseAssetGroup

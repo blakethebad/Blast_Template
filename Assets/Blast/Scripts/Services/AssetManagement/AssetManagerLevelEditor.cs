@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Blast.Scripts.Core.Grid.GridData;
-using Blast.Scripts.EditorTools.LevelEditor.Code.Tools;
+using Blast.Core.Grid.GridData;
+using Blast.EditorTools.LevelEditor.Code.Tools;
 using UnityEditor;
 using UnityEngine;
 
-namespace Blast.Scripts.Services.AssetManagement
+namespace Blast.Services.AssetManagement
 {
     public class AssetManagerLevelEditor
     {

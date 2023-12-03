@@ -1,6 +1,6 @@
-﻿using Blast.Scripts.Core.Grid;
+﻿using Blast.Core.Grid;
 
-namespace Blast.Scripts.Core.TileElements.Interfaces
+namespace Blast.Core.TileElements.Interfaces
 {
     public interface ISwappable
     {

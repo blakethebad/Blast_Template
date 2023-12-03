@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
-using Blast.Scripts.Core.Grid;
-using Blast.Scripts.Core.Match;
-using Blast.Scripts.Core.TileElements;
-using Blast.Scripts.Core.TileElements.Interfaces;
-using UnityEngine;
+using Blast.Core.Grid;
+using Blast.Core.MatchLogic;
+using Blast.Core.TileElements.Interfaces;
 
-namespace Blast.Scripts.Core.Tile.TileStates
+namespace Blast.Core.TileLogic.TileStates
 {
     public class RecieveInputState : BaseTileState
     {
@@ -41,14 +38,14 @@ namespace Blast.Scripts.Core.Tile.TileStates
             if(CoreTile.GetFirstElement() is not IMatchable)
                 return;
             
-            Match.Match foundMatch = CheckMatch();
+            Match foundMatch = CheckMatch();
             if (foundMatch is not null)
             {
                 GridMono.OnMatchCreated.Invoke(foundMatch);
             }
         }
 
-        private Match.Match CheckMatch()
+        private Match CheckMatch()
         {
             _searchQueue.Clear();
             _searchedTiles.Clear();

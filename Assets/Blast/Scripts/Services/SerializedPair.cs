@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Blast.Scripts.Services
+namespace Blast.Services
 {
     [System.Serializable]
     public class SerializedPair<T1,T2>

@@ -1,11 +1,12 @@
-﻿using Blast.Scripts.Core.Grid.GridData;
+﻿using Blast.Core.Grid.GridData;
+using Blast.Core.TileLogic;
 using UnityEngine;
 
-namespace Blast.Scripts.Core.Grid.GridCreation
+namespace Blast.Core.Grid.GridCreation
 {
     public class GridCreator
     {
-        public void CreateGrid(GridMono grid, LevelData currentLevelData, ref Tile.Tile[][] tiles)
+        public void CreateGrid(GridMono grid, LevelData currentLevelData, ref Tile[][] tiles)
         {
             //Loop over tileDataList to create each tile
             for (int i = 0; i < currentLevelData.TileDataList.Count; i++)
@@ -19,10 +20,10 @@ namespace Blast.Scripts.Core.Grid.GridCreation
                     grid.GetTile(x,y).FindNeighbors(grid);
         }
         
-        private void CreateTile(TileData tileData, ref Tile.Tile[][] tiles)
+        private void CreateTile(TileData tileData, ref Tile[][] tiles)
         {
             Vector2Int tileCoordinates = new Vector2Int(tileData.xPos, tileData.yPos);
-            Tile.Tile createdTile = new Tile.Tile(tileCoordinates);
+            Tile createdTile = new Tile(tileCoordinates);
             tiles[tileData.xPos][tileData.yPos] = createdTile;
 
             //For each of the tile element data we will create a tile element under created tile

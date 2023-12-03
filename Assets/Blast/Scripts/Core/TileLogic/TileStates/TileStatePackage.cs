@@ -1,14 +1,15 @@
 ﻿using System;
-using Blast.Scripts.Core.Grid;
+using Blast.Core.Grid;
+using Blast.Core.MatchLogic;
 
-namespace Blast.Scripts.Core.Tile.TileStates
+namespace Blast.Core.TileLogic.TileStates
 {
     public struct TileStatePackage
     {
         public TileState StateToTranslate { get; private set; }
         
         //ActivateState
-        public Match.Match ActivatedMatch { get; private set; }
+        public Match ActivatedMatch { get; private set; }
         public Action OnTileActivated { get; private set; }
         
         //DropState
@@ -38,7 +39,7 @@ namespace Blast.Scripts.Core.Tile.TileStates
         }
         
         //ActivateState
-        public TileStatePackage(TileState stateToTranslate, Match.Match activatedMatch, Action onTileActivated)
+        public TileStatePackage(TileState stateToTranslate, Match activatedMatch, Action onTileActivated)
         {
             StateToTranslate = stateToTranslate;
             ActivatedMatch = activatedMatch;

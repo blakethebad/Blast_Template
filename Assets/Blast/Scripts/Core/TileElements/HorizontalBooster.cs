@@ -1,14 +1,14 @@
 ﻿using System;
-using Blast.Scripts.Core.Grid;
-using Blast.Scripts.Core.Match;
+using Blast.Core.Grid;
+using Blast.Core.MatchLogic;
 
-namespace Blast.Scripts.Core.TileElements
+namespace Blast.Core.TileElements
 {
     public class HorizontalBooster : Booster
     {
-        public override void Activate(Match.Match activatedMatch, Action onActivationComplete)
+        public override void Activate(Match activatedMatch, Action onActivationComplete)
         {
-            Match.Match boosterMatch = new HorizontalBoosterMatch(MatchType.HorizontalBoosterMatch, Tile);
+            Match boosterMatch = new HorizontalBoosterMatch(MatchType.HorizontalBoosterMatch, Tile);
             Tile.RemoveElementFromTile(this);
             ReturnElementToPool();
 

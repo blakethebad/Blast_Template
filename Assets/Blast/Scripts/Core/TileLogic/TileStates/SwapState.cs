@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Blast.Scripts.Core.Tile.TileStates
+namespace Blast.Core.TileLogic.TileStates
 {
     public class SwapState : BaseTileState
     {

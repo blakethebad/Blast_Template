@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Blast.Scripts.Core.Grid.GridData;
+using Blast.Core.Grid.GridData;
 
-namespace Blast.Scripts.Core.Grid.GridObjectives
+namespace Blast.Core.Grid
 {
     public class GridObjectives
     {

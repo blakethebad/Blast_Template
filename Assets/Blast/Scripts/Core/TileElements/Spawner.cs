@@ -1,10 +1,11 @@
 ﻿using System;
-using Blast.Scripts.Core.Grid;
-using Blast.Scripts.Core.Grid.GridData;
-using Blast.Scripts.Core.TileElements.Interfaces;
+using Blast.Core.Grid;
+using Blast.Core.Grid.GridData;
+using Blast.Core.TileElements.Interfaces;
+using Blast.Core.TileLogic;
 using Random = UnityEngine.Random;
 
-namespace Blast.Scripts.Core.TileElements
+namespace Blast.Core.TileElements
 {
     public class Spawner : BaseTileElement, IDroppable
     {
@@ -17,7 +18,7 @@ namespace Blast.Scripts.Core.TileElements
             BoardElementType.YellowStone, BoardElementType.PurpleStone
         };
 
-        public void Drop(Tile.Tile droppedTile, Action onDropComplete)
+        public void Drop(Tile droppedTile, Action onDropComplete)
         {
             if(_isDropping)
                 return;

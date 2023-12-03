@@ -1,9 +1,10 @@
 ﻿using System;
+using Blast.Core.TileLogic;
 
-namespace Blast.Scripts.Core.TileElements.Interfaces
+namespace Blast.Core.TileElements.Interfaces
 {
     public interface IDroppable
     {
-        public void Drop(Tile.Tile droppedTile, Action onDropComplete);
+        public void Drop(Tile droppedTile, Action onDropComplete);
     }
 }

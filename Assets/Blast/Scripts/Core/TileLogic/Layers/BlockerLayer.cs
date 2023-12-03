@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Blast.Scripts.Core.TileElements;
+using Blast.Core.TileElements;
 
-namespace Blast.Scripts.Core.Tile.Layers
+namespace Blast.Core.TileLogic.Layers
 {
     public class BlockerLayer : ITileLayer
     {

@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Blast.Scripts.Core.Grid.GridStateController.States
+namespace Blast.Core.Grid.States
 {
     public class InputState: BaseGridState, IGridInputReciever
     {

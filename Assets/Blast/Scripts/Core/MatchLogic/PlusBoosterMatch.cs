@@ -1,11 +1,12 @@
 ﻿using System.Collections;
-using Blast.Scripts.Core.Grid;
+using Blast.Core.Grid;
+using Blast.Core.TileLogic;
 
-namespace Blast.Scripts.Core.Match
+namespace Blast.Core.MatchLogic
 {
     public class PlusBoosterMatch : Match
     {
-        public PlusBoosterMatch(MatchType matchType, Tile.Tile originTile) : base(matchType)
+        public PlusBoosterMatch(MatchType matchType, Tile originTile) : base(matchType)
         {
             CalculateMatch(originTile);
         }
@@ -16,7 +17,7 @@ namespace Blast.Scripts.Core.Match
             yield break;
         }
 
-        private void CalculateMatch(Tile.Tile originTile)
+        private void CalculateMatch(Tile originTile)
         {
             MatchedTiles.Add(originTile);
             MatchedTiles.Add(originTile.GetNeighbor(Direction.Top));

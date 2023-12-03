@@ -1,4 +1,4 @@
-﻿namespace Blast.Scripts.Core.TileElements.Interfaces
+﻿namespace Blast.Core.TileElements.Interfaces
 {
     public interface IMatchable
     {

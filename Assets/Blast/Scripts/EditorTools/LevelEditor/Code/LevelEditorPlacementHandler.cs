@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using Blast.Scripts.Core.Grid.GridData;
-using Blast.Scripts.EditorTools.LevelEditor.Code.Tools;
+using Blast.Core.Grid.GridData;
+using Blast.EditorTools.LevelEditor.Code.Tools;
 
-namespace Blast.Scripts.EditorTools.LevelEditor.Code
+namespace Blast.EditorTools.LevelEditor.Code
 {
     public class LevelEditorPlacementHandler
     {

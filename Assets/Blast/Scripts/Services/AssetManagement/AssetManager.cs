@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using Blast.Scripts.Services.AssetManagement.AssetGroup;
+using Blast.Services.AssetManagement.AssetGroup;
 using UnityEngine;
 
-namespace Blast.Scripts.Services.AssetManagement
+namespace Blast.Services.AssetManagement
 {
     public enum AssetGroupTag
     {
