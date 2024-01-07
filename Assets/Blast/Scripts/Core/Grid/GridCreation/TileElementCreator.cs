@@ -1,4 +1,5 @@
-﻿using Blast.Core.Grid.GridData;
+﻿using System.Collections.Generic;
+using Blast.Core.Grid.GridData;
 using Blast.Core.TileElements;
 using Blast.Core.TileLogic;
 using Blast.Services.AssetManagement;
@@ -8,21 +9,17 @@ namespace Blast.Core.Grid.GridCreation
 {
     public class TileElementCreator
     {
-        private RandomStoneTypeAssigner _typeAssigner = new RandomStoneTypeAssigner();
-
-        public BaseTileElement CreateTileElement(TileElementData tileElementData, GridMono grid, Vector3 spawnPosition)
+        private List<BoardElementType> _randomStoneTypes = new List<BoardElementType>()
         {
-            if (tileElementData.ElementType == BoardElementType.RandomStone)
-                tileElementData.ElementType = _typeAssigner.AssignRandomTypes(tileElementData, grid);
-            
-            return CreateElementFromPool(tileElementData, spawnPosition, grid);
-        }
+            BoardElementType.RedStone, BoardElementType.GreenStone, BoardElementType.YellowStone,
+            BoardElementType.PurpleStone, BoardElementType.BlueStone
+        };
 
         public void CreateElementOnTile(TileElementData tileElementData, Tile createdTile, GridMono grid)
         {
             if (tileElementData.ElementType == BoardElementType.RandomStone)
-                tileElementData.ElementType = _typeAssigner.AssignRandomTypes(tileElementData, grid);
-            
+                tileElementData.ElementType = _randomStoneTypes[Random.Range(0, _randomStoneTypes.Count)];
+
             BaseTileElement baseTileElement = CreateElementFromPool(tileElementData, createdTile.WorldPosition, grid);
 
             createdTile.AddTileElement(baseTileElement);

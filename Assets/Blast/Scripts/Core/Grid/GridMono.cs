@@ -82,9 +82,6 @@ namespace Blast.Core.Grid
         
         public Tile GetTile(int x, int y) => x >= Size.x || x < 0 || y < 0 || y >= Size.y ? null : _tiles[x][y] ?? null;
 
-        public BaseTileElement CreateTileElement(TileElementData tileElementData, Vector3 spawnPosition) =>
-            _tileElementCreator.CreateTileElement(tileElementData, this, spawnPosition);
-
         public void CreateElementOnTile(TileElementData tileElementData, Tile tile) =>
             _tileElementCreator.CreateElementOnTile(tileElementData, tile, this);
 

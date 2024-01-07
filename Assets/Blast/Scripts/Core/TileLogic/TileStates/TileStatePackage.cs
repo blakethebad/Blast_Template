@@ -4,7 +4,7 @@ using Blast.Core.MatchLogic;
 
 namespace Blast.Core.TileLogic.TileStates
 {
-    public struct TileStatePackage
+    public struct TileStatePackage //TODO: Refactor into transitions for each state
     {
         public TileState StateToTranslate { get; private set; }
         

@@ -4,7 +4,7 @@ namespace Blast.Core.TileLogic.TileStates
 {
     public class SwapState : BaseTileState
     {
-        public SwapState(Tile _coreTile, Action<TileStatePackage> _changeStateCallback) : base(_coreTile, _changeStateCallback)
+        public SwapState(Tile coreTile, Action<TileStatePackage> changeStateCallback) : base(coreTile, changeStateCallback)
         {
         }
 
