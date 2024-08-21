@@ -1,31 +1,27 @@
 ﻿using System;
 using Blast.Core.Grid;
+using Blast.Core.Grid.Factories;
 using Blast.Core.MatchLogic;
+using Blast.Core.TileElements.Interfaces;
 
 namespace Blast.Core.TileElements
 {
-    public class VerticalBooster : Booster
-    {
-        private Match _boosterMatch;
-        public override void Activate(Match activatedMatch, Action onActivationComplete)
+    public sealed class VerticalBooster : BaseTileElement, IClickActivatable {
+        private readonly IMatchFactory _matchFactory;
+
+        public VerticalBooster(IMatchFactory matchFactory) {
+            _matchFactory = matchFactory;
+        }
+        
+        public void Activate(Match activatedMatch, Action onActivationComplete)
         {
-            _boosterMatch = new VerticalBoosterMatch(MatchType.VerticalBoosterMatch, Tile);
             Tile.RemoveElementFromTile(this);
             ReturnElementToPool();
-
-            GridMono.OnMatchCreated.Invoke(_boosterMatch);
+            _matchFactory.CreateAndActivateVerticalBoosterMatch(Tile);
             onActivationComplete.Invoke();
             
         }
 
-        public override void ComboActivate(BaseTileElement swappedElement, Action onBoosterActivated)
-        {
-            
-        }
-
-        public override void SwapActivate(BaseTileElement swappedElement, Action onBoosterActivated)
-        {
-            Activate(null, onBoosterActivated);
-        }
+        public override TileLayerType Layer { get; protected set; } = TileLayerType.ItemLayer;
     }
 }

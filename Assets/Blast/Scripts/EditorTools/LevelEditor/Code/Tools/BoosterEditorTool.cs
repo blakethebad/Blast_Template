@@ -8,7 +8,7 @@ namespace Blast.EditorTools.LevelEditor.Code.Tools
     {
         public override TileElementData GenerateDuplicateTileElementData()
         {
-            TileElementData duplicate = new BoosterData();
+            TileElementData duplicate = new TileElementData();
 
             duplicate.ElementType = ElementType;
 

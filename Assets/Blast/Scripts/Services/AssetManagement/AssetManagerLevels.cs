@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using Blast.Core.Grid.GridData;
 using Blast.Services.AssetManagement.AssetGroup;
+using UnityEngine;
 
 namespace Blast.Services.AssetManagement
 {
@@ -16,6 +17,8 @@ namespace Blast.Services.AssetManagement
         public LevelData GetLevel(int levelIndex)
         {
             LevelData levelData;
+            Debug.LogError(levelIndex);
+            Debug.LogError(_levelAssetGroup.Levels.Count);
 
             if (levelIndex <= 0)
                 levelData = _levelAssetGroup.Levels.Min();

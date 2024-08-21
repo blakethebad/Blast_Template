@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using Blast.Core.Grid.GridData;
 using Blast.EditorTools.LevelEditor.Code.Tools;
+using UnityEngine.Tilemaps;
+using TileData = Blast.Core.Grid.GridData.TileData;
 
 namespace Blast.EditorTools.LevelEditor.Code
 {
@@ -51,7 +53,7 @@ namespace Blast.EditorTools.LevelEditor.Code
             levelData.TileDataList[tileDataIndex].xPos = xPos;
             levelData.TileDataList[tileDataIndex].yPos = yPos;
             levelData.TileDataList[tileDataIndex].TileElementDataList = new List<TileElementData>();
-            levelData.TileDataList[tileDataIndex].TileElementDataList.Add(new ColorStoneData()
+            levelData.TileDataList[tileDataIndex].TileElementDataList.Add(new TileElementData()
             {
                 ElementType = BoardElementType.RandomStone
             });
@@ -61,14 +63,14 @@ namespace Blast.EditorTools.LevelEditor.Code
         {
             TileElementEditorTool itemTool = _levelEditorWindow.SelectedTool;
             
-            TileElementData tileElementData = levelData.TileDataList[tileDataIndex].TileElementDataList.Find((data => data is ColorStoneData));
+            TileElementData tileElementData = levelData.TileDataList[tileDataIndex].TileElementDataList.Find((data => BoardElementHelper.IsBaseType(data.ElementType, BaseElementType.ColorStone)));
 
             if (tileElementData != null)
             {
                 levelData.TileDataList[tileDataIndex].TileElementDataList.Remove(tileElementData);
             }
 
-            ColorStoneData colorStoneData = new ColorStoneData();
+            TileElementData colorStoneData = new TileElementData();
 
             colorStoneData.ElementType = itemTool.ElementType;
             colorStoneData.TileData = levelData.TileDataList[tileDataIndex];

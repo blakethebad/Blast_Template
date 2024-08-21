@@ -1,5 +1,6 @@
 ﻿using System;
 using Blast.Core.Grid;
+using Blast.Core.Grid.Factories;
 using Blast.Core.Grid.GridData;
 using Blast.Core.TileElements.Interfaces;
 using Blast.Core.TileLogic;
@@ -11,12 +12,16 @@ namespace Blast.Core.TileElements
     {
         public override TileLayerType Layer { get; protected set; } = TileLayerType.TileAbilityLayer;
         private bool _isDropping = false;
-
+        private ITileElementFactory _tileElementFactory;
         private BoardElementType[] _possibleSpawnTypes = new[]
         {
             BoardElementType.RedStone, BoardElementType.BlueStone, BoardElementType.GreenStone,
             BoardElementType.YellowStone, BoardElementType.PurpleStone
         };
+
+        public Spawner(ITileElementFactory tileElementFactory) {
+            _tileElementFactory = tileElementFactory;
+        }
 
         public void Drop(Tile droppedTile, Action onDropComplete)
         {
@@ -24,10 +29,10 @@ namespace Blast.Core.TileElements
                 return;
 
             _isDropping = true;
-            ColorStoneData newStoneData = new ColorStoneData();
+            TileElementData newStoneData = new TileElementData();
             newStoneData.ElementType = _possibleSpawnTypes[Random.Range(0, _possibleSpawnTypes.Length)];
 
-            GridMono.OnElementRequested.Invoke(newStoneData, Tile);
+            _tileElementFactory.CreateElementOnTile(newStoneData, Tile);
             
             ((IDroppable)Tile.GetFirstElement()).Drop(droppedTile, (() =>
             {

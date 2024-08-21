@@ -113,14 +113,14 @@ namespace Blast.Services.AssetManagement
                     //Means a default spawner position
                     if (y == levelData.sizeY - 1)
                     {
-                        SpawnerData spawnerData = new SpawnerData();
+                        TileElementData spawnerData = new TileElementData();
                         spawnerData.ElementType = BoardElementType.StoneSpawner;
                         spawnerData.TileData = tileData;
                         tileData.TileElementDataList.Add(spawnerData);
                     }
                     else
                     {
-                        ColorStoneData randomStone = new ColorStoneData();
+                        TileElementData randomStone = new TileElementData();
                         randomStone.ElementType = BoardElementType.RandomStone;
                         randomStone.TileData = tileData;
 

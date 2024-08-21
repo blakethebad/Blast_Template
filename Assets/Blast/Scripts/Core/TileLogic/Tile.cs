@@ -1,27 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using Blast.Core.Grid;
+using Blast.Core.Grid.Factories;
 using Blast.Core.MatchLogic;
 using Blast.Core.TileElements;
 using Blast.Core.TileLogic.Layers;
-using Blast.Core.TileLogic.TileStates;
 using UnityEngine;
 
 namespace Blast.Core.TileLogic
 {
-    public sealed class Tile
-    {
+    public abstract class Tile {
         public Vector2Int Coordinates { get; private set; }
         public Vector3 WorldPosition { get; private set; }
 
-        private BaseTileState _currentState;
-
         private Dictionary<Direction, Tile> _neighbors;
-        private readonly Dictionary<TileLayerType, ITileLayer> _layers;
-        private readonly Dictionary<TileState, BaseTileState> _states;
-
-        public Tile(Vector2Int coordinates)
-        {
+        private  Dictionary<TileLayerType, ITileLayer> _layers;
+        protected readonly IRefillHandler RefillHandler;
+        protected readonly ITileFactory TileFactory;
+        
+        public Tile(Vector2Int coordinates, IRefillHandler refillHandler, ITileFactory tileFactory) {
+            RefillHandler = refillHandler;
+            TileFactory = tileFactory;
             Coordinates = coordinates;
             WorldPosition = new Vector3(Coordinates.x, Coordinates.y);
             _layers = new Dictionary<TileLayerType, ITileLayer>()
@@ -31,20 +30,7 @@ namespace Blast.Core.TileLogic
                 { TileLayerType.TileAbilityLayer, new TileAbilityLayer() },
                 { TileLayerType.TileBackgroundLayer, new TileBackgroundLayer() },
             };
-            _states = new Dictionary<TileState, BaseTileState>()
-            {
-                { TileState.IdleState, new IdleState(this, ChangeState) },
-                { TileState.ActivateState, new ActivateState(this, ChangeState) },
-                { TileState.DropState, new DropState(this, ChangeState) },
-                { TileState.RefillState, new RefillState(this, ChangeState) },
-                { TileState.RecieveInputState, new RecieveInputState(this, ChangeState) },
-                { TileState.SwapState, new SwapState(this, ChangeState)},
-                { TileState.WaitingDropState , new WaitingDropState(this, ChangeState)}
-            };
-            _currentState = _states[TileState.IdleState];
         }
-
-        #region Neighbor
 
         public void FindNeighbors(GridMono grid)
         {
@@ -63,10 +49,6 @@ namespace Blast.Core.TileLogic
         }
 
         public Tile GetNeighbor(Direction direction) => _neighbors[direction];
-
-        #endregion
-
-        #region TileElements
 
         public bool IsEmpty()
         {
@@ -97,32 +79,28 @@ namespace Blast.Core.TileLogic
         }
         
         public bool IsLayerEmpty(TileLayerType layerType) => _layers[layerType].IsEmpty();
-        public bool LayerContainsType(TileLayerType layerType, BoardElementType type) => _layers[layerType].LayerContainsType(type);
         public void RemoveElementFromTile(BaseTileElement element) => _layers[element.Layer].RemoveElement(element);
-        public BoardElementType GetFirstTypeFromLayer(TileLayerType layerType) => _layers[layerType].GetFirstType();
 
+        public virtual void DropElement(Tile tileToDrop, Action onDropComplete) => onDropComplete.Invoke();
 
-        #endregion
-        
-        #region TileActions
+        public virtual void RecieveInput() { }
 
-        private void ChangeState(TileStatePackage statePackage)
-        {
-            if (!_currentState.CanTranslateTo(statePackage.StateToTranslate)) return;
-            _currentState = _states[statePackage.StateToTranslate];
-            _currentState.EnterState(statePackage);
+        public virtual void Activate(Match activatedMatch, Action onActivated) => onActivated.Invoke();
+
+        public void SwitchToIdle() => TileFactory.SwitchToEmpty(this);
+        public void SwitchToEmpty() => TileFactory.SwitchToEmpty(this);
+
+        public void SetNeighbors(Dictionary<Direction, Tile> neighbors) {
+            _neighbors = neighbors;
         }
-        
-        public bool CheckCurrentState(TileState state) => _currentState.State == state;
-        
-        public void RefillTile() => ChangeState(new TileStatePackage(TileState.RefillState));
-        
-        public void DropElement(Tile tileToDrop, Action onDropComplete) => ChangeState(new TileStatePackage(TileState.DropState, tileToDrop, onDropComplete));
 
-        public void RecieveInput(Direction inputDirection) => ChangeState(new TileStatePackage(TileState.RecieveInputState, inputDirection));
+        public Dictionary<Direction, Tile> GetNeighbors() => _neighbors;
 
-        public void Activate(Match activatedMatch, Action onTileActivated) => ChangeState(new TileStatePackage(TileState.ActivateState, activatedMatch, onTileActivated));
+        public void SetLayers(Dictionary<TileLayerType, ITileLayer> layers) {
+            _layers = layers;
+        }
 
-        #endregion
+        public Dictionary<TileLayerType, ITileLayer> GetLayers() => _layers;
+
     }
 }

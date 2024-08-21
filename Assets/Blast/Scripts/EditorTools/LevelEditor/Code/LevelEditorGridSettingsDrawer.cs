@@ -81,7 +81,8 @@ namespace Blast.EditorTools.LevelEditor.Code
                 {
                     if (levelData.ObjectiveDataList.Count < levelData.GetMaxObjectiveCount())
                     {
-                        levelData.ObjectiveDataList.Add(new ObjectiveData());
+                        levelData.ObjectiveDataList.Add(BoardElementType.None);
+                        levelData.ObjectiveCountList.Add(0);
                     }
                 }
                 
@@ -94,12 +95,12 @@ namespace Blast.EditorTools.LevelEditor.Code
                         GUILayout.BeginVertical();
                         {
                             EditorGUI.BeginChangeCheck();
-                            levelData.ObjectiveDataList[i].ObjectiveType = (BoardElementType)EditorGUILayout.EnumPopup("Type", (BoardElementType)levelData.ObjectiveDataList[i].ObjectiveType,
+                            levelData.ObjectiveDataList[i] = (BoardElementType)EditorGUILayout.EnumPopup("Type", (BoardElementType)levelData.ObjectiveDataList[i],
                                     GUILayout.MaxWidth(350));
 
                             EditorGUI.BeginChangeCheck();
-                            levelData.ObjectiveDataList[i].Count = EditorGUILayout.IntField("Objective Count",
-                                levelData.ObjectiveDataList[i].Count, GUILayout.MaxWidth(200));
+                            levelData.ObjectiveCountList[i] = EditorGUILayout.IntField("Objective Count",
+                                levelData.ObjectiveCountList[i], GUILayout.MaxWidth(200));
                         }
                         GUILayout.EndVertical();
                     

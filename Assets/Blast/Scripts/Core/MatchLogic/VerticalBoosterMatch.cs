@@ -17,12 +17,10 @@ namespace Blast.Core.MatchLogic
             CalculateMatch(originTile);
         }
 
-        public override IEnumerator ExecuteMatch()
+        public override void ExecuteMatch()
         {
             foreach (var currentSequence in _orderedActivation)
             {
-                yield return _delayForActivation;
-                
                 ActivateTileGroup(currentSequence);
             }
         }

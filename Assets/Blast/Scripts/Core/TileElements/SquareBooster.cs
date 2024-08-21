@@ -1,23 +1,21 @@
 ﻿using System;
+using Blast.Core.Grid.Factories;
 using Blast.Core.MatchLogic;
+using Blast.Core.TileElements.Interfaces;
 
 namespace Blast.Core.TileElements
 {
-    public class SquareBooster : Booster
-    {
-        public override void Activate(Match activatedMatch, Action onActivationComplete)
+    public sealed class SquareBooster : BaseTileElement, IClickActivatable {
+        private readonly IMatchFactory _matchFactory;
+
+        public SquareBooster(IMatchFactory matchFactory) {
+            _matchFactory = matchFactory;
+        }
+        
+        public void Activate(Match activatedMatch, Action onActivationComplete)
         {
-            throw new NotImplementedException();
         }
 
-        public override void ComboActivate(BaseTileElement swappedElement, Action onBoosterActivated)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void SwapActivate(BaseTileElement swappedElement, Action onBoosterActivated)
-        {
-            throw new NotImplementedException();
-        }
+        public override TileLayerType Layer { get; protected set; } = TileLayerType.ItemLayer;
     }
 }

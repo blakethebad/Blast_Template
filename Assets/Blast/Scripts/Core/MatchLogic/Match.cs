@@ -17,7 +17,7 @@ namespace Blast.Core.MatchLogic
             MatchType = matchType;
         }
 
-        public abstract IEnumerator ExecuteMatch();
+        public abstract void ExecuteMatch();
 
         protected void ActivateTileGroup(HashSet<Tile> tileGroup)
         {
@@ -39,12 +39,6 @@ namespace Blast.Core.MatchLogic
                 MatchedTiles.Remove(matchedTile);
                 ActivatedTiles.Add(matchedTile);
                 if (MatchedTiles.Count > 0) return;
-                
-                GridMono.OnMatchCompleted.Invoke(this);
-                foreach (Tile matchedTile in ActivatedTiles)
-                {
-                    matchedTile.RefillTile();
-                }
             }
         }
     }

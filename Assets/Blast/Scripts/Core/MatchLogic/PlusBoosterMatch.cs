@@ -11,10 +11,9 @@ namespace Blast.Core.MatchLogic
             CalculateMatch(originTile);
         }
 
-        public override IEnumerator ExecuteMatch()
+        public override void ExecuteMatch()
         {
             ActivateTileGroup(MatchedTiles);
-            yield break;
         }
 
         private void CalculateMatch(Tile originTile)

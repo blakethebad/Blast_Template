@@ -15,9 +15,11 @@ namespace Blast.Core.Grid.GridData
 
         public int levelIndex;
         public List<TileData> TileDataList;
-        
+
+        public List<BoardElementType> ObjectiveDataList;
+        public List<int> ObjectiveCountList;
+
         //Index number is maximum objective data and can be hardcoded here
-        public List<ObjectiveData> ObjectiveDataList = new List<ObjectiveData>();
 
         public int GetMaxObjectiveCount() => 3;
 
