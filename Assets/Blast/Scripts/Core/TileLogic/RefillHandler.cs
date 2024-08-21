@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Blast.Core.Grid;
 using Blast.Core.Grid.Factories;
 using Blast.Core.TileLogic.TileStates;
+using DG.Tweening;
 using UnityEngine;
 
 namespace Blast.Core.TileLogic {
@@ -20,10 +21,12 @@ namespace Blast.Core.TileLogic {
             _gridMono = gridMono;
         }
 
-        public IEnumerator RefillGrid() {
+        public void StartGridRefill() {
+            DOVirtual.DelayedCall(0.05f, Refill);
 
-            yield return _refillDelay;
-            
+        }
+
+        public void Refill() {
             foreach (EmptyTile emptyTile in _emptyTiles) {
                 emptyTile.Refill();
             }
@@ -31,8 +34,13 @@ namespace Blast.Core.TileLogic {
             _emptyTiles.Clear();
             _emptyTiles.AddRange(_pendingEmptyTiles);
             _pendingEmptyTiles.Clear();
+            DOVirtual.DelayedCall(0.05f, Refill);
+        }
 
-            yield return RefillGrid();
+        public IEnumerator RefillGrid() {
+
+            StartGridRefill();
+            yield break;
         }
 
         public void AddTileToRefill(Tile refillTile) {

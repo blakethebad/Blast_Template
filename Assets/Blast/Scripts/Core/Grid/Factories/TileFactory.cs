@@ -78,7 +78,6 @@ namespace Blast.Core.Grid.Factories {
         }
 
         public void SwitchToEmpty(Tile tile) {
-            Debug.LogError(tile.Coordinates);
             Tile emptyTile = _emptyTiles[tile.Coordinates.x][tile.Coordinates.y];
             emptyTile.SetNeighbors(tile.GetNeighbors());
             emptyTile.SetLayers(tile.GetLayers());

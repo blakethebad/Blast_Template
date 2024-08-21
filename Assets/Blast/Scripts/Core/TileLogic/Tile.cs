@@ -87,7 +87,7 @@ namespace Blast.Core.TileLogic
 
         public virtual void Activate(Match activatedMatch, Action onActivated) => onActivated.Invoke();
 
-        public void SwitchToIdle() => TileFactory.SwitchToEmpty(this);
+        public void SwitchToIdle() => TileFactory.SwitchToIdle(this);
         public void SwitchToEmpty() => TileFactory.SwitchToEmpty(this);
 
         public void SetNeighbors(Dictionary<Direction, Tile> neighbors) {

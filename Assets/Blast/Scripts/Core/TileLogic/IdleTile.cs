@@ -14,8 +14,8 @@ namespace Blast.Core.TileLogic
             _matchLocator = matchLocator;
         }
 
-        public override void RecieveInput()
-        {
+        public override void RecieveInput() {
+            Debug.LogError(this);
             if(IsEmpty()) return;
 
             if (GetFirstElement() is IClickActivatable clickActivatable)
