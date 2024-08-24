@@ -21,7 +21,6 @@ namespace Blast.Core.TileLogic.TileStates
 
             void OnDropComplete() {
                 SwitchToIdle();
-                Debug.LogError("switch");
             }
         }
     }
