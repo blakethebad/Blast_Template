@@ -57,14 +57,13 @@ namespace Blast.Core.Grid
                 }
             }
 
-            StartCoroutine(_refillHandler.RefillGrid());
+            _refillHandler.StartGridRefill();
         }
 
         public Tile GetTile(int x, int y) => x >= Size.x || x < 0 || y < 0 || y >= Size.y ? null : Tiles[x][y] ?? null;
         public void OnPointerDown(PointerEventData eventData) => _inputCollector.OnGridClick(eventData.position);
         public void OnPointerUp(PointerEventData eventData) => _inputCollector.OnPointerUp(eventData.position);
         
-                
         public void SendInputToPosition(Vector2Int position)
         {
             Tile clickedTile = GetTile(position.x, position.y);

@@ -9,11 +9,6 @@ namespace Blast.Core.TileLogic.TileStates
         public EmptyTile(Vector2Int coordinates, IRefillHandler refillHandler, ITileFactory tileFactory) : base(coordinates, refillHandler, tileFactory) {
         }
 
-        public override void RecieveInput() {
-            base.RecieveInput();
-            Debug.LogError(this);
-        }
-
         public void Refill() {
             Tile dropTile = GetNeighbor(Direction.Top);
 

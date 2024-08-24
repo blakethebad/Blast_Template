@@ -2,7 +2,7 @@
 
 namespace Blast.Core.TileLogic {
     public interface IRefillHandler {
-        IEnumerator RefillGrid();
+        void StartGridRefill();
         public void AddTileToRefill(Tile refillTile);
     }
 }

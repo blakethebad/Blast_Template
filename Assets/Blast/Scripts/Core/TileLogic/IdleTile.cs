@@ -15,7 +15,6 @@ namespace Blast.Core.TileLogic
         }
 
         public override void RecieveInput() {
-            Debug.LogError(this);
             if(IsEmpty()) return;
 
             if (GetFirstElement() is IClickActivatable clickActivatable)
@@ -52,14 +51,11 @@ namespace Blast.Core.TileLogic
 
         public override void DropElement(Tile tileToDrop, Action onDropComplete)
         {
-            ((IDroppable)GetFirstElement()).Drop(tileToDrop, OnDropComplete);
-            if (Coordinates.y != 6) {
-                SwitchToEmpty();
-                RefillHandler.AddTileToRefill(this);
-            }
-            void OnDropComplete() {
-                onDropComplete.Invoke();
-            }
+            ((IDroppable)GetFirstElement()).Drop(tileToDrop, onDropComplete);
+            if (!IsLayerEmpty(TileLayerType.TileAbilityLayer)) return;
+            
+            SwitchToEmpty();
+            RefillHandler.AddTileToRefill(this);
         }
     }
 }

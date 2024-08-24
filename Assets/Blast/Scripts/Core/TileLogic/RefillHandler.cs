@@ -8,12 +8,10 @@ using UnityEngine;
 
 namespace Blast.Core.TileLogic {
     public class RefillHandler : IRefillHandler {
-
-        private WaitForSeconds _refillDelay = new WaitForSeconds(0.05f);
-
-        private GridMono _gridMono;
-        private List<EmptyTile> _emptyTiles;
-        private List<EmptyTile> _pendingEmptyTiles;
+        private readonly GridMono _gridMono;
+        private readonly List<EmptyTile> _emptyTiles;
+        private readonly List<EmptyTile> _pendingEmptyTiles;
+        private readonly float _refillDelay = 0.05f;
 
         public RefillHandler(GridMono gridMono) {
             _emptyTiles = new List<EmptyTile>();
@@ -22,8 +20,7 @@ namespace Blast.Core.TileLogic {
         }
 
         public void StartGridRefill() {
-            DOVirtual.DelayedCall(0.05f, Refill);
-
+            DOVirtual.DelayedCall(_refillDelay, Refill);
         }
 
         public void Refill() {
@@ -34,13 +31,7 @@ namespace Blast.Core.TileLogic {
             _emptyTiles.Clear();
             _emptyTiles.AddRange(_pendingEmptyTiles);
             _pendingEmptyTiles.Clear();
-            DOVirtual.DelayedCall(0.05f, Refill);
-        }
-
-        public IEnumerator RefillGrid() {
-
-            StartGridRefill();
-            yield break;
+            DOVirtual.DelayedCall(_refillDelay, Refill);
         }
 
         public void AddTileToRefill(Tile refillTile) {
